@@ -30,3 +30,6 @@ void stopEngines()
   SerialUSB.println("Stop engines");
  
 }
+void setPlaneOutput()
+{
+}

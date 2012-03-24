@@ -22,7 +22,9 @@ void inline setCurPlane()
   if (g_robotState.currPlane < PLANE_COUNT)
   {
     g_robotState.currLen = 0;
-    RESET_FLAG(PLANE_SETTED);
+    
+    setPlaneOutput();
+    
     SerialUSB.print("Current plane switching to "); 
     SerialUSB.print(g_robotState.currPlane);
     SerialUSB.println();
@@ -53,11 +55,5 @@ void updatePlane()
   {
     default:
       g_robotState.currLen++;
-  }
-   
-  if (!GET_FLAG(PLANE_SETTED))
-  {
-    SET_FLAG(PLANE_SETTED);
-    
   }
 }
