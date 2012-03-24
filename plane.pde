@@ -43,10 +43,15 @@ bool checkComplete()
 
 void updatePlane()
 {
-  g_robotState.currLen++; 
-  
+  switch(g_robotState.planes[g_robotState.currPlane].condition)
+  {
+    default:
+      g_robotState.currLen++;
+  }
+   
   if (!GET_FLAG(PLANE_SETTED))
   {
     SET_FLAG(PLANE_SETTED);
+    
   }
 }

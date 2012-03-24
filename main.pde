@@ -2,6 +2,9 @@
 #define PLANE_COUNT 50
 #define MAX_WORK_TIME 90*1000
 
+#define OPEN_DOOR_TIME 1000
+#define CLOSE_DOOR_TIME 1000
+
 typedef struct
 {
   int len;
@@ -36,10 +39,10 @@ enum
   DO_NOTHING,
   MOVE_FORWARD,
   MOVE_BACKWARD,
-  MOVE_LEFT,
-  MOVE_RIGHT,
+  TURN_LEFT,
+  TURN_RIGHT,
   OPEN_DOOR,
-  CLOSE_DOORS
+  CLOSE_DOOR
 };
 
 struct
