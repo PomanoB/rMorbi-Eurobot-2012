@@ -7,10 +7,8 @@
 
 typedef struct
 {
-  int len;
-  uint8 speed;
-  uint8 condition;
-  uint8 goTo;
+  int len; // condition
+  uint8 speed; // goTo
   uint8 type;
 } planeUnit;
 
@@ -42,7 +40,8 @@ enum
   TURN_LEFT,
   TURN_RIGHT,
   OPEN_DOOR,
-  CLOSE_DOOR
+  CLOSE_DOOR,
+  CONDITION
 };
 
 struct
@@ -94,8 +93,6 @@ void resetState()
     {
       g_robotState.planes[i].len = 0;
       g_robotState.planes[i].speed = 0;
-      g_robotState.planes[i].condition = COND_NONE;
-      g_robotState.planes[i].goTo = 0;
       g_robotState.planes[i].type = DO_NOTHING;
     }
 }
@@ -109,8 +106,11 @@ void setup()
   resetState(); 
   
   moveForward(5);
+  goToPlane(4);
   moveForward(3);
+  goToPlane(0);
   moveForward(4);
+  goToPlane(2);
   
   initEngineTimer(1000000); // 40000
   

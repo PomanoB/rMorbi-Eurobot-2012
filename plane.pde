@@ -4,7 +4,21 @@ void inline setCurPlane()
   {
     g_robotState.currPlane++;
   }
-  
+  if (g_robotState.planes[g_robotState.currPlane].type == CONDITION)
+  {
+    SerialUSB.print("Chek condition ");
+    switch(g_robotState.planes[g_robotState.currPlane].len)
+    {
+      case COND_GO_TO:
+        g_robotState.currPlane = g_robotState.planes[g_robotState.currPlane].speed;
+        break;
+      default:
+        g_robotState.currPlane++;
+    }
+  }
+  else
+    g_robotState.currPlane++;
+    
   if (g_robotState.currPlane < PLANE_COUNT)
   {
     g_robotState.currLen = 0;
@@ -27,14 +41,6 @@ bool checkComplete()
     
   if (g_robotState.currLen >= g_robotState.planes[g_robotState.currPlane].len)   
   {
-    switch(g_robotState.planes[g_robotState.currPlane].condition)
-    {
-      case COND_GO_TO:
-        g_robotState.currPlane = g_robotState.planes[g_robotState.currPlane].goTo;
-        break;
-      default:
-        g_robotState.currPlane++;
-    }
     setCurPlane();
     return true;
   }
@@ -43,7 +49,7 @@ bool checkComplete()
 
 void updatePlane()
 {
-  switch(g_robotState.planes[g_robotState.currPlane].condition)
+  switch(g_robotState.planes[g_robotState.currPlane].type)
   {
     default:
       g_robotState.currLen++;
