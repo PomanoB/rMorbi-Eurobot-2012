@@ -16,6 +16,7 @@ typedef void(* engineCorrector)(void);
 #define ALLOW_WORK (1<<0)
 #define STOP_ENGINES (1<<1)
 #define ENGINE_STOPED (1<<2)
+#define PLANE_SETTED (1<<3)
 
 #define GET_FLAG(x) (g_robotState.flags & (1<<(x)))
 #define SET_FLAG(x) (g_robotState.flags |= (1<<(x)))
@@ -84,6 +85,7 @@ void resetState()
     RESET_FLAG(ALLOW_WORK);
     RESET_FLAG(STOP_ENGINES);
     RESET_FLAG(ENGINE_STOPED);
+    RESET_FLAG(PLANE_SETTED);
     
     for(int i = 0; i < PLANE_COUNT; i++)
     {
@@ -100,12 +102,12 @@ void setup()
       while (!SerialUSB.available())
         continue;
         
- SerialUSB.println("Start setup");       
+  SerialUSB.println("Start setup");       
   resetState(); 
   
   moveForward(5);
-  moveForward(2);
-  moveForward(1);
+  moveForward(3);
+  moveForward(4);
   
   initEngineTimer(1000000); // 40000
   

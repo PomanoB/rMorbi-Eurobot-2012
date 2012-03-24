@@ -11,5 +11,10 @@ void inline addPlane(int l, uint8 s, uint8 c, uint8 g, uint8 t)
 
 void inline moveForward(int len)
 {
-   addPlane(len, 0xFF, COND_NONE, 0, MOVE_FORWARD);
+  addPlane(len, 0xFF, COND_NONE, 0, MOVE_FORWARD);
+}
+
+void inlineMoveBackward(int len)
+{
+  addPlane(len, 0xFF, COND_NONE, 0, MOVE_BACKWARD);
 }

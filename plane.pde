@@ -1,9 +1,15 @@
 void inline setCurPlane()
 {
+  while(g_robotState.currPlane < PLANE_COUNT && g_robotState.planes[g_robotState.currPlane].len <= 0)
+  {
+    g_robotState.currPlane++;
+  }
+  
   if (g_robotState.currPlane < PLANE_COUNT)
   {
     g_robotState.currLen = 0;
-    SerialUSB.print("Current plane switching to"); 
+    RESET_FLAG(PLANE_SETTED);
+    SerialUSB.print("Current plane switching to "); 
     SerialUSB.print(g_robotState.currPlane);
     SerialUSB.println();
   }
@@ -38,4 +44,9 @@ bool checkComplete()
 void updatePlane()
 {
   g_robotState.currLen++; 
+  
+  if (!GET_FLAG(PLANE_SETTED))
+  {
+    SET_FLAG(PLANE_SETTED);
+  }
 }

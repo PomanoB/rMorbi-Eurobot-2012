@@ -26,6 +26,7 @@ void engineTimerHandler()
 
 void stopEngines()
 {
-   SerialUSB.println("Stop engines");
-   
+  SET_FLAG(ENGINE_STOPED);
+  SerialUSB.println("Stop engines");
+ 
 }
