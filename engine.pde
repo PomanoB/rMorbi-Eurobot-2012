@@ -40,4 +40,10 @@ void stopEngines()
 }
 void setPlaneOutput()
 {
+  switch(g_robotState.planes[g_robotState.currPlane].type)
+  {
+   case WAIT:
+      g_robotState.startPlaneTime = millis();
+       break; 
+  }
 }

@@ -51,6 +51,7 @@ enum
   TURN_RIGHT,
   OPEN_DOOR,
   CLOSE_DOOR,
+  WAIT,
   CONDITION
 };
 
@@ -72,6 +73,7 @@ struct
   int currLen;
   int lastAddedPlane;
   planeUnit planes[PLANE_COUNT];
+  int startPlaneTime;
   
   int flags;
   

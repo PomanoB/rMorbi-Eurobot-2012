@@ -5,7 +5,6 @@ void initDoors()
   g_leftDoor.attach(LEFT_DOOR_PIN, LEFT_DOOR_MIN_PW, LEFT_DOOR_MAX_PW);
   g_leftDoor.attach(RIGHT_DOOR_PIN, RIGHT_DOOR_MIN_PW, RIGHT_DOOR_MAX_PW);
 }
-
 void inline closeDoors()
 {
   closeLeftDoor();

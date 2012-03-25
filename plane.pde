@@ -53,6 +53,9 @@ void updatePlane()
 {
   switch(g_robotState.planes[g_robotState.currPlane].type)
   {
+    case WAIT:
+      g_robotState.currLen = millis() - g_robotState.startPlaneTime;
+      break;
     default:
       g_robotState.currLen++;
   }
