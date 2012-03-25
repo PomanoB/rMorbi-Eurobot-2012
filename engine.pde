@@ -27,7 +27,8 @@ void engineTimerHandler()
   if (!checkComplete())
   {
     updatePlane();
-    
+    if (g_robotState.corrector)
+     g_robotState.corrector();   
   } 
 
 }

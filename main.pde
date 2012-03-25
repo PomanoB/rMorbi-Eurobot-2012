@@ -55,6 +55,7 @@ enum
   CONDITION
 };
 
+
 struct
 {
   // Энкодеры
@@ -116,5 +117,5 @@ void loop()
       return;
    }
    RESET_FLAG(ENGINE_STOPED);
- //  correctEngines();  
+   
 }
