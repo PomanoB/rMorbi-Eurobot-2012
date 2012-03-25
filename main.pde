@@ -1,3 +1,4 @@
+#include <Servo.h>
 
 #define PLANE_COUNT 50
 #define MAX_WORK_TIME 90*1000
@@ -7,6 +8,13 @@
 
 #define LEFT_ENCODER_PIN 1
 #define RIGHT_ENCODER_PIN 2
+
+#define LEFT_DOOR_PIN 9
+#define RIGHT_DOOR_PIN 10
+#define LEFT_DOOR_MIN_PW 544
+#define LEFT_DOOR_MAX_PW 2400
+#define RIGHT_DOOR_MIN_PW 544
+#define RIGHT_DOOR_MAX_PW 2400
 
 typedef struct
 {
@@ -87,7 +95,10 @@ void setup()
   moveForward(4);
   goToPlane(2);
   
+  initDoors();
   initEncoders();
+  initRangers();
+  
   initEngineTimer(1000000); // 40000
   
   SET_FLAG(ALLOW_WORK);
