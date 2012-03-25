@@ -5,6 +5,9 @@
 #define OPEN_DOOR_TIME 1000
 #define CLOSE_DOOR_TIME 1000
 
+#define LEFT_ENCODER_PIN 1
+#define RIGHT_ENCODER_PIN 2
+
 typedef struct
 {
   int len; // condition
@@ -70,6 +73,7 @@ struct
 
 void setup() 
 {
+  noInterrupts();
   while (!SerialUSB.available())
     continue;
         
@@ -83,9 +87,11 @@ void setup()
   moveForward(4);
   goToPlane(2);
   
+  initEncoders();
   initEngineTimer(1000000); // 40000
   
   SET_FLAG(ALLOW_WORK);
+  interrupts();
 }
 
 void loop() 
