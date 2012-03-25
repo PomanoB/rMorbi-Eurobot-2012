@@ -1,4 +1,3 @@
-
 void initEncoders()
 {
   pinMode(LEFT_ENCODER_PIN, INPUT);
