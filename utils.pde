@@ -13,7 +13,7 @@ void resetState()
     g_robotState.startTime = 0;
     
     RESET_FLAG(ALLOW_WORK);
-    RESET_FLAG(STOP_ENGINES);
+    RESET_FLAG(COLLISION);
     RESET_FLAG(ENGINE_STOPED);
     
     for(int i = 0; i < PLANE_COUNT; i++)

@@ -15,14 +15,8 @@ void initEngineTimer(int period)
 void engineTimerHandler()
 {
   SerialUSB.println("Engine timer interrupt");
-  /*
-  if (isCollision())
-  {
-    stopEngines();
-    return;
-  }
- */
-  if (GET_FLAG(STOP_ENGINES))
+
+  if (GET_FLAG(COLLISION))
     return;
     
   if (GET_FLAG(ENGINE_STOPED))

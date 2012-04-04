@@ -26,7 +26,7 @@ typedef struct
 typedef void(* engineCorrector)(void);
 
 #define ALLOW_WORK (1<<0)
-#define STOP_ENGINES (1<<1)
+#define COLLISION (1<<1)
 #define ENGINE_STOPED (1<<2)
 
 #define GET_FLAG(x) (g_robotState.flags & (1<<(x)))
@@ -110,16 +110,21 @@ void setup()
 
 void loop() 
 {
-    if (isCollision())
-    {
-     SET_FLAG(STOP_ENGINES);
-    } 
-   if ((millis() - g_robotState.startTime) > MAX_WORK_TIME || !GET_FLAG(ALLOW_WORK) || GET_FLAG(STOP_ENGINES)) 
-   {
-      if (!GET_FLAG(ENGINE_STOPED))
-        stopEngines(); 
-      return;
-   }
-   RESET_FLAG(ENGINE_STOPED);
+  if (isCollision())
+  {
+    SET_FLAG(COLLISION);
+  } 
+  else
+    RESET_FLAG(COLLISION);
+  
+  if ((millis() - g_robotState.startTime) > MAX_WORK_TIME)
+    RESET_FLAG(ALLOW_WORK);
    
+  if(!GET_FLAG(ALLOW_WORK) || GET_FLAG(COLLISION)) 
+  {
+    if (!GET_FLAG(ENGINE_STOPED))
+      stopEngines(); 
+    return;
+  }
+  RESET_FLAG(ENGINE_STOPED);
 }
