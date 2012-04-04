@@ -15,13 +15,17 @@ void initEngineTimer(int period)
 void engineTimerHandler()
 {
   SerialUSB.println("Engine timer interrupt");
-  
+  /*
   if (isCollision())
   {
     stopEngines();
     return;
   }
-  else if (GET_FLAG(ENGINE_STOPED))
+ */
+  if (GET_FLAG(STOP_ENGINES))
+    return;
+    
+  if (GET_FLAG(ENGINE_STOPED))
     setPlaneOutput();
   
   if (!checkComplete())

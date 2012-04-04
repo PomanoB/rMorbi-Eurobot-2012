@@ -110,6 +110,10 @@ void setup()
 
 void loop() 
 {
+    if (isCollision())
+    {
+     SET_FLAG(STOP_ENGINES);
+    } 
    if ((millis() - g_robotState.startTime) > MAX_WORK_TIME || !GET_FLAG(ALLOW_WORK) || GET_FLAG(STOP_ENGINES)) 
    {
       if (!GET_FLAG(ENGINE_STOPED))
