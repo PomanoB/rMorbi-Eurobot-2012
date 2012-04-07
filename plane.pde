@@ -60,3 +60,36 @@ void updatePlane()
       g_robotState.currLen++;
   }
 }
+
+void setPlaneOutput()
+{
+  switch(g_robotState.planes[g_robotState.currPlane].type)
+  {
+   case WAIT:
+      g_robotState.startPlaneTime = millis();
+       break; 
+    case MOVE_FORWARD:
+      leftEngineForward();
+      rightEngineForward();
+      break; 
+    case MOVE_BACKWARD:
+      leftEngineBackward();
+      rightEngineBackward();
+      break;
+    case TURN_LEFT:
+      leftEngineStop();
+      rightEngineForward();
+      break;
+    case TURN_RIGHT:
+      rightEngineStop();
+      leftEngineForward();
+      break;
+    case OPEN_DOORS:
+      openDoors();
+      break;
+    case CLOSE_DOORS:
+      closeDoors();
+      break;    
+  }
+}
+

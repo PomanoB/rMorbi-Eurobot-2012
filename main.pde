@@ -16,6 +16,13 @@
 #define RIGHT_DOOR_MIN_PW 544
 #define RIGHT_DOOR_MAX_PW 2400
 
+#define LEFT_ENGINE_A 33
+#define LEFT_ENGINE_B 34
+#define LEFT_ENGINE_E 36
+#define RIGHT_ENGINE_A 32
+#define RIGHT_ENGINE_B 31
+#define RIGHT_ENGINE_E 35
+
 typedef struct
 {
   int len; // condition
@@ -49,8 +56,8 @@ enum
   MOVE_BACKWARD,
   TURN_LEFT,
   TURN_RIGHT,
-  OPEN_DOOR,
-  CLOSE_DOOR,
+  OPEN_DOORS,
+  CLOSE_DOORS,
   WAIT,
   CONDITION
 };
@@ -85,10 +92,7 @@ struct
 void setup() 
 {
   noInterrupts();
-  while (!SerialUSB.available())
-    continue;
-        
-  SerialUSB.println("Start setup");       
+
   resetState(); 
   
   moveForward(5);
@@ -101,6 +105,8 @@ void setup()
   initDoors();
   initEncoders();
   initRangers();
+  initEngines();
+  
   
   initEngineTimer(1000000); // 40000
   
@@ -110,6 +116,9 @@ void setup()
 
 void loop() 
 {
+  if(!GET_FLAG(ALLOW_WORK))
+    return;
+  
   if (isCollision())
   {
     SET_FLAG(COLLISION);
@@ -118,9 +127,12 @@ void loop()
     RESET_FLAG(COLLISION);
   
   if ((millis() - g_robotState.startTime) > MAX_WORK_TIME)
+  {
     RESET_FLAG(ALLOW_WORK);
+    noInterrupts();
+  }
    
-  if(!GET_FLAG(ALLOW_WORK) || GET_FLAG(COLLISION)) 
+  if(GET_FLAG(COLLISION)) 
   {
     if (!GET_FLAG(ENGINE_STOPED))
       stopEngines(); 

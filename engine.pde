@@ -14,8 +14,6 @@ void initEngineTimer(int period)
 
 void engineTimerHandler()
 {
-  SerialUSB.println("Engine timer interrupt");
-
   if (GET_FLAG(COLLISION))
     return;
     
@@ -34,15 +32,59 @@ void engineTimerHandler()
 void stopEngines()
 {
   SET_FLAG(ENGINE_STOPED);
-  SerialUSB.println("Stop engines");
- 
+  rightEngineStop();
+  leftEngineStop(); 
 }
-void setPlaneOutput()
+
+void initEngines()
 {
-  switch(g_robotState.planes[g_robotState.currPlane].type)
-  {
-   case WAIT:
-      g_robotState.startPlaneTime = millis();
-       break; 
-  }
+  // Set engines pins to otput
+  pinMode(LEFT_ENGINE_A, OUTPUT);
+  pinMode(LEFT_ENGINE_B, OUTPUT);
+  pinMode(LEFT_ENGINE_E, OUTPUT);
+  pinMode(RIGHT_ENGINE_A, OUTPUT);  
+  pinMode(RIGHT_ENGINE_B, OUTPUT);
+  pinMode(RIGHT_ENGINE_E, OUTPUT);
+  
+  digitalWrite(LEFT_ENGINE_A, LOW);
+  digitalWrite(LEFT_ENGINE_B, HIGH);
+  digitalWrite(LEFT_ENGINE_E, LOW);
+  
+  digitalWrite(RIGHT_ENGINE_A, LOW);
+  digitalWrite(RIGHT_ENGINE_B, HIGH);
+  digitalWrite(RIGHT_ENGINE_E, LOW);
+}
+
+inline void leftEngineForward()
+{
+  digitalWrite(LEFT_ENGINE_A, LOW);
+  digitalWrite(LEFT_ENGINE_B, HIGH);
+  digitalWrite(LEFT_ENGINE_E, HIGH);
+}
+inline void rightEngineForward()
+{
+  digitalWrite(RIGHT_ENGINE_A, LOW);
+  digitalWrite(RIGHT_ENGINE_B, HIGH);
+  digitalWrite(RIGHT_ENGINE_E, HIGH);  
+}
+
+inline void leftEngineBackward()
+{
+  digitalWrite(LEFT_ENGINE_A, HIGH);
+  digitalWrite(LEFT_ENGINE_B, LOW);
+  digitalWrite(LEFT_ENGINE_E, HIGH);
+}
+inline void rightEngineBackward()
+{
+  digitalWrite(RIGHT_ENGINE_A, HIGH);
+  digitalWrite(RIGHT_ENGINE_B, LOW);
+  digitalWrite(RIGHT_ENGINE_E, HIGH);
+}
+inline void rightEngineStop()
+{
+  digitalWrite(RIGHT_ENGINE_E, LOW);
+}
+inline void leftEngineStop()
+{
+  digitalWrite(LEFT_ENGINE_E, LOW);
 }

@@ -25,11 +25,11 @@ void inline turnRight(int len)
 }
 void inline openDoor()
 {
-  addPlane(OPEN_DOOR_TIME, 0xFF, OPEN_DOOR);
+  addPlane(OPEN_DOOR_TIME, 0xFF, OPEN_DOORS);
 }
 void inline closeDoor()
 {
-  addPlane(CLOSE_DOOR_TIME, 0xFF, CLOSE_DOOR);
+  addPlane(CLOSE_DOOR_TIME, 0xFF, CLOSE_DOORS);
 }
 void inline goToPlane(uint8 n)
 {
