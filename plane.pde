@@ -6,7 +6,7 @@ void inline setCurPlane()
   }
   if (g_robotState.planes[g_robotState.currPlane].type == CONDITION)
   {
-    SerialUSB.print("Chek condition ");
+//    SerialUSB.print("Chek condition ");
     switch(g_robotState.planes[g_robotState.currPlane].len)
     {
       case COND_GO_TO:
@@ -24,15 +24,16 @@ void inline setCurPlane()
     g_robotState.currLen = 0;
     
     setPlaneOutput();
-    
+   /* 
     SerialUSB.print("Current plane switching to "); 
     SerialUSB.print(g_robotState.currPlane);
     SerialUSB.println();
+    */
   }
   else
   {
     RESET_FLAG(ALLOW_WORK);
-    SerialUSB.println("END!!!!");
+ //   SerialUSB.println("END!!!!");
   }
 }
 
@@ -53,20 +54,22 @@ void updatePlane()
 {
   switch(g_robotState.planes[g_robotState.currPlane].type)
   {
-    case WAIT:
+    ///case WAIT:
+     default:
       g_robotState.currLen = millis() - g_robotState.startPlaneTime;
       break;
-    default:
-      g_robotState.currLen++;
+ //   default:
+ //     g_robotState.currLen++;
   }
 }
 
 void setPlaneOutput()
 {
+  g_robotState.startPlaneTime = millis();
   switch(g_robotState.planes[g_robotState.currPlane].type)
   {
    case WAIT:
-      g_robotState.startPlaneTime = millis();
+ //     g_robotState.startPlaneTime = millis();
        break; 
     case MOVE_FORWARD:
       leftEngineForward();

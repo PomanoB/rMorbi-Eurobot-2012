@@ -94,21 +94,21 @@ void setup()
   noInterrupts();
 
   resetState(); 
-  
+  /*
   moveForward(5);
   goToPlane(4);
   moveForward(3);
   goToPlane(0);
   moveForward(4);
   goToPlane(2);
-  
-  initDoors();
-  initEncoders();
-  initRangers();
+ */
+ 
+//  initDoors();
+//  initEncoders();
+//  initRangers();
   initEngines();
-  
-  
-  initEngineTimer(1000000); // 40000
+    
+  initEngineTimer(40000); // 40000
   
   SET_FLAG(ALLOW_WORK);
   interrupts();
@@ -118,17 +118,18 @@ void loop()
 {
   if(!GET_FLAG(ALLOW_WORK))
     return;
-  
+  /*
   if (isCollision())
   {
     SET_FLAG(COLLISION);
   } 
   else
     RESET_FLAG(COLLISION);
-  
+  */
   if ((millis() - g_robotState.startTime) > MAX_WORK_TIME)
   {
     RESET_FLAG(ALLOW_WORK);
+    stopEngines();
     noInterrupts();
   }
    
