@@ -47,6 +47,7 @@ bool checkComplete()
     
   if (g_robotState.currLen >= g_robotState.planes[g_robotState.currPlane].len)   
   {
+    stopEngines();
     setCurPlane();
     return true;
   }

@@ -1,5 +1,8 @@
 #include <Servo.h>
 
+#define DEGRESS(x) (53*(x))
+#define SM(x) (117*(x))
+
 #define PLANE_COUNT 50
 #define MAX_WORK_TIME 90*1000
 
@@ -94,12 +97,21 @@ void setup()
   noInterrupts();
 
   resetState(); 
-  
+  /*
   moveForward(2000);
   turnLeft(2000);
   moveForward(2000);
   turnRight(2000);
   moveBackward(2000);
+  */
+  moveForward(5200);
+  turnLeft(5300);
+  moveForward(9000);
+//  turnLeft(900);
+//  turnRight(900);
+//  moveForward(3000);
+  turnRight(5300);
+  moveForward(1000);
 //  initDoors();
 //  initEncoders();
 //  initRangers();
