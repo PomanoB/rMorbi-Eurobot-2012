@@ -16,12 +16,12 @@
 #define RIGHT_DOOR_MIN_PW 544
 #define RIGHT_DOOR_MAX_PW 2400
 
-#define LEFT_ENGINE_A 33
-#define LEFT_ENGINE_B 34
-#define LEFT_ENGINE_E 36
-#define RIGHT_ENGINE_A 32
-#define RIGHT_ENGINE_B 31
-#define RIGHT_ENGINE_E 35
+#define LEFT_ENGINE_A 32
+#define LEFT_ENGINE_B 31
+#define LEFT_ENGINE_E 35
+#define RIGHT_ENGINE_A 33
+#define RIGHT_ENGINE_B 34
+#define RIGHT_ENGINE_E 36
 
 typedef struct
 {
@@ -94,15 +94,12 @@ void setup()
   noInterrupts();
 
   resetState(); 
-  /*
-  moveForward(5);
-  goToPlane(4);
-  moveForward(3);
-  goToPlane(0);
-  moveForward(4);
-  goToPlane(2);
- */
- 
+  
+  moveForward(2000);
+  turnLeft(2000);
+  moveForward(2000);
+  turnRight(2000);
+  moveBackward(2000);
 //  initDoors();
 //  initEncoders();
 //  initRangers();
@@ -111,6 +108,7 @@ void setup()
   initEngineTimer(40000); // 40000
   
   SET_FLAG(ALLOW_WORK);
+  SET_FLAG(ENGINE_STOPED);
   interrupts();
 }
 

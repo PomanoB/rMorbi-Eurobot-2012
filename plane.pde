@@ -1,9 +1,11 @@
 void inline setCurPlane()
 {
+  /*
   while(g_robotState.currPlane < PLANE_COUNT && g_robotState.planes[g_robotState.currPlane].len <= 0)
   {
     g_robotState.currPlane++;
   }
+  */
   if (g_robotState.planes[g_robotState.currPlane].type == CONDITION)
   {
 //    SerialUSB.print("Chek condition ");
@@ -33,6 +35,7 @@ void inline setCurPlane()
   else
   {
     RESET_FLAG(ALLOW_WORK);
+    stopEngines();
  //   SerialUSB.println("END!!!!");
   }
 }

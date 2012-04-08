@@ -9,6 +9,7 @@ void resetState()
     g_robotState.currPlane = 0;
     g_robotState.currLen = 0;
     g_robotState.lastAddedPlane = -1;
+    g_robotState.startPlaneTime = 0;    
     
     g_robotState.startTime = 0;
     
