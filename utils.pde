@@ -1,3 +1,23 @@
+inline int incToMax(int val, int maxVal, int dec)
+{
+  if (val < maxVal)
+    val += dec;
+  if (val > maxVal)
+    val = maxVal;
+  
+  return val;
+}
+
+inline int decToMin(int val, int minVal, int dec)
+{
+  if (val > minVal)
+    val -= dec;
+  if (val < minVal)
+    val = minVal;
+  
+  return val;
+}
+
 void resetState()
 {
     g_robotState.leftEncoder = 0;

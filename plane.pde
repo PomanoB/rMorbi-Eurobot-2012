@@ -23,7 +23,7 @@ void inline setCurPlane()
   if (g_robotState.currPlane < PLANE_COUNT)
   {
     g_robotState.currLen = 0;
-    
+  //  stopEngines();
     setPlaneOutput();
   }
   else
@@ -41,7 +41,7 @@ bool checkComplete()
     
   if (g_robotState.currLen >= g_robotState.planes[g_robotState.currPlane].len)   
   {
-    stopEngines();
+ //   stopEngines();
     setCurPlane();
     return true;
   }
