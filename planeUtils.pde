@@ -35,3 +35,8 @@ void inline goToPlane(uint8 n)
 {
   addPlane(COND_GO_TO, n, CONDITION);
 }
+
+void wait(int t)
+{
+  addPlane(t, 0xFF, WAIT);
+}

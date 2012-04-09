@@ -1,3 +1,15 @@
+void engineCorrectorNone()
+{
+  g_robotState.leftEncoder = g_robotState.rightEncoder = 0;
+  /*
+  switch(g_robotState.planes[g_robotState.currPlane].type)
+  {
+    case MOVE_FORWARD:
+    case MOVE_BACKWARD:
+    case 
+  */    
+}
+
 void initEngineTimer(int period)
 {
   g_engineTimer.pause();

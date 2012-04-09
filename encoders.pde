@@ -1,17 +1,17 @@
 void initEncoders()
 {
-  pinMode(LEFT_ENCODER_PIN, INPUT);
-  pinMode(RIGHT_ENCODER_PIN, INPUT);
+  pinMode(LEFT_ENCODER_PIN_B, INPUT);
+  pinMode(RIGHT_ENCODER_PIN_B, INPUT);
   
-  attachInterrupt(LEFT_ENCODER_PIN, leftEncoderHandler, RISING); 
-  attachInterrupt(RIGHT_ENCODER_PIN, rightEncoderHandler, RISING);
+  attachInterrupt(LEFT_ENCODER_PIN_B, leftEncoderHandlerA, RISING); 
+  attachInterrupt(RIGHT_ENCODER_PIN_B, rightEncoderHandlerA, RISING);
 }
 
-void leftEncoderHandler()
+void leftEncoderHandlerA()
 {
   g_robotState.leftEncoder++;
 }
-void rightEncoderHandler()
+void rightEncoderHandlerA()
 {
   g_robotState.rightEncoder++;
 }

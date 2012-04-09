@@ -9,8 +9,12 @@
 #define OPEN_DOOR_TIME 1000
 #define CLOSE_DOOR_TIME 1000
 
-#define LEFT_ENCODER_PIN 1
-#define RIGHT_ENCODER_PIN 2
+//#define LEFT_ENCODER_PIN 1
+//#define RIGHT_ENCODER_PIN 2
+#define RIGHT_ENCODER_PIN_A 39
+#define RIGHT_ENCODER_PIN_B 37
+#define LEFT_ENCODER_PIN_A 40
+#define LEFT_ENCODER_PIN_B 26
 
 #define LEFT_DOOR_PIN 9
 #define RIGHT_DOOR_PIN 10
@@ -94,6 +98,7 @@ struct
 
 void setup() 
 {
+  
   noInterrupts();
 
   resetState(); 
@@ -104,23 +109,35 @@ void setup()
   turnRight(2000);
   moveBackward(2000);
   */
-  moveForward(5200);
-  turnLeft(5300);
-  moveForward(9000);
+  turnLeft(500000);
+  wait(1000);
+  turnRight(500000);
+  wait(1000);
+  turnLeft(500000);  
+  wait(1000);
+  turnRight(500000);  
+  wait(1000);
+  turnLeft(500000);  
+  wait(1000);
+  turnRight(500000);  
+  wait(1000);
+  turnLeft(500000);  
+  wait(1000);
+  turnRight(500000);  
 //  turnLeft(900);
 //  turnRight(900);
 //  moveForward(3000);
-  turnRight(5300);
-  moveForward(1000);
+  
 //  initDoors();
-//  initEncoders();
+  initEncoders();
 //  initRangers();
   initEngines();
-    
+  
   initEngineTimer(40000); // 40000
   
   SET_FLAG(ALLOW_WORK);
   SET_FLAG(ENGINE_STOPED);
+  
   interrupts();
 }
 
@@ -150,4 +167,5 @@ void loop()
     return;
   }
   RESET_FLAG(ENGINE_STOPED);
+
 }

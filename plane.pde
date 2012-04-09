@@ -8,7 +8,6 @@ void inline setCurPlane()
   */
   if (g_robotState.planes[g_robotState.currPlane].type == CONDITION)
   {
-//    SerialUSB.print("Chek condition ");
     switch(g_robotState.planes[g_robotState.currPlane].len)
     {
       case COND_GO_TO:
@@ -26,11 +25,6 @@ void inline setCurPlane()
     g_robotState.currLen = 0;
     
     setPlaneOutput();
-   /* 
-    SerialUSB.print("Current plane switching to "); 
-    SerialUSB.print(g_robotState.currPlane);
-    SerialUSB.println();
-    */
   }
   else
   {
@@ -58,8 +52,23 @@ void updatePlane()
 {
   switch(g_robotState.planes[g_robotState.currPlane].type)
   {
-    ///case WAIT:
-     default:
+    case MOVE_FORWARD:
+    case MOVE_BACKWARD:
+      if (g_robotState.leftEncoder > g_robotState.rightEncoder)
+        g_robotState.currLen += g_robotState.leftEncoder;
+      else
+        g_robotState.currLen += g_robotState.rightEncoder;
+      break;
+    
+    case TURN_LEFT:
+        g_robotState.currLen += g_robotState.rightEncoder;
+        break;
+    
+    case TURN_RIGHT:
+        g_robotState.currLen += g_robotState.leftEncoder;
+        break;
+        
+    case WAIT:
       g_robotState.currLen = millis() - g_robotState.startPlaneTime;
       break;
  //   default:
