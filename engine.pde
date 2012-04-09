@@ -50,6 +50,7 @@ void engineCorrectorNone()
         }//  g_robotState.leftPWM = g_robotState.rightPWM = decToMin(g_robotState.leftPWM, 0, 1000);
         else
           g_robotState.leftPWM = g_robotState.rightPWM = decToMin(g_robotState.rightPWM, 0, 1000);
+       
        //   g_robotState.rightPWM = decToMin(g_robotState.rightPWM, 0, 1000);
         //  g_robotState.leftPWM = g_robotState.rightPWM = decToMin(g_robotState.rightPWM, 0, 1000);
 //        g_robotState.rightPWM = decToMin(g_robotState.rightPWM, 0, 1000);

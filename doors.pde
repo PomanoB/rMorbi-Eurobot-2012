@@ -2,32 +2,32 @@ Servo g_leftDoor, g_rightDoor;
 
 void initDoors()
 {
-  g_leftDoor.attach(LEFT_DOOR_PIN, LEFT_DOOR_MIN_PW, LEFT_DOOR_MAX_PW);
-  g_leftDoor.attach(RIGHT_DOOR_PIN, RIGHT_DOOR_MIN_PW, RIGHT_DOOR_MAX_PW);
+  g_leftDoor.attach(LEFT_DOOR_PIN);
+  g_leftDoor.attach(RIGHT_DOOR_PIN);
 }
-void inline closeDoors()
-{
-  closeLeftDoor();
-  closeRightDoor();
-}
-void inline openDoors()
-{
-  openLeftDoor();
-  openRightDoor();
-}
+
 void inline closeLeftDoor()
 {
-  g_leftDoor.write(0);
+  g_leftDoor.writeMicroseconds(2400);
 }
 void inline openLeftDoor()
 {
-  g_leftDoor.write(180);  
+  g_leftDoor.writeMicroseconds(900);  
+}
+
+void inline halfOpenLeftDoor()
+{
+  g_leftDoor.writeMicroseconds(1400);  
 }
 void inline closeRightDoor()
 {
-  g_rightDoor.write(0);
+  g_rightDoor.writeMicroseconds(700);
 }
 void inline openRightDoor()
 {
-  g_rightDoor.write(180);  
+  g_rightDoor.writeMicroseconds(2400);  
+}
+void inline halfORightDoor()
+{
+  g_rightDoor.writeMicroseconds(1600);  
 }

@@ -16,12 +16,8 @@
 #define LEFT_ENCODER_PIN_A 40
 #define LEFT_ENCODER_PIN_B 26
 
-#define LEFT_DOOR_PIN 9
-#define RIGHT_DOOR_PIN 10
-#define LEFT_DOOR_MIN_PW 544
-#define LEFT_DOOR_MAX_PW 2400
-#define RIGHT_DOOR_MIN_PW 544
-#define RIGHT_DOOR_MAX_PW 2400
+#define LEFT_DOOR_PIN 6
+#define RIGHT_DOOR_PIN 28
 
 #define LEFT_ENGINE_A 32
 #define LEFT_ENGINE_B 31
@@ -63,8 +59,9 @@ enum
   MOVE_BACKWARD,
   TURN_LEFT,
   TURN_RIGHT,
-  OPEN_DOORS,
-  CLOSE_DOORS,
+  OPEN_LEFT_DOOR,
+  OPEN_RIGHT_DOOR,
+  CLOSE_RIGHT,
   WAIT,
   CONDITION
 };
@@ -109,21 +106,7 @@ void setup()
   turnRight(2000);
   moveBackward(2000);
   */
-  moveForward(10000);
-  wait(1000);
-  moveBackward(10000);
-  wait(1000);
-  moveForward(10000);  
-  wait(1000);
-  moveBackward(10000);  
-  wait(1000);
-  moveForward(10000);  
-  wait(1000);
-  moveBackward(10000);  
-  wait(1000);
-  moveForward(10000);  
-  wait(1000);
-  moveBackward(10000);  
+  turnLeft(10000);
 //  turnLeft(900);
 //  turnRight(900);
 //  moveForward(3000);

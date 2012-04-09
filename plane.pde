@@ -100,11 +100,8 @@ void setPlaneOutput()
       rightEngineStop();
       leftEngineForward();
       break;
-    case OPEN_DOORS:
-      openDoors();
-      break;
-    case CLOSE_DOORS:
-      closeDoors();
+    case OPEN_LEFT_DOOR:
+      openLeftDoor();
       break;    
   }
 }
