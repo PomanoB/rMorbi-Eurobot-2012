@@ -105,7 +105,8 @@ void setup()
   turnRight(2000);
   moveBackward(2000);
   */
-  moveForward(SM(80));
+  moveForward(SM(40));
+  turnRight(35000);
   wait(3000);
 //  moveForward(5000);
 //  turnLeft(900);
