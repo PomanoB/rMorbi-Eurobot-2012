@@ -1,3 +1,11 @@
+inline int changeToVal(int val, int toVal, int dec)
+{
+  if (val < toVal) 
+    return incToMax(val, toVal, dec);
+  else  
+    return decToMin(val, toVal, dec);
+}
+
 inline int incToMax(int val, int maxVal, int dec)
 {
   if (val < maxVal)
@@ -7,7 +15,6 @@ inline int incToMax(int val, int maxVal, int dec)
   
   return val;
 }
-
 inline int decToMin(int val, int minVal, int dec)
 {
   if (val > minVal)

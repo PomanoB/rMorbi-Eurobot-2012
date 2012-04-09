@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 #define DEGRESS(x) (53*(x))
-#define SM(x) (117*(x))
+#define SM(x) (1013*(x))
 
 #define PLANE_COUNT 50
 #define MAX_WORK_TIME 90*1000
@@ -94,8 +94,7 @@ struct
 } g_robotState;
 
 void setup() 
-{
-  
+{  
   noInterrupts();
 
   resetState(); 
@@ -106,7 +105,9 @@ void setup()
   turnRight(2000);
   moveBackward(2000);
   */
-  turnLeft(10000);
+  moveForward(SM(80));
+  wait(3000);
+//  moveForward(5000);
 //  turnLeft(900);
 //  turnRight(900);
 //  moveForward(3000);
