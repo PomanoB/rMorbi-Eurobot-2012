@@ -28,10 +28,10 @@ void inline setCurPlane()
   }
   else
   {
-    RESET_FLAG(ALLOW_WORK);
-    stopEngines();
+    shutDown();
  //   SerialUSB.println("END!!!!");
   }
+  toggleLED();
 }
 
 bool checkComplete()
@@ -71,6 +71,16 @@ void updatePlane()
     case WAIT:
       g_robotState.currLen = millis() - g_robotState.startPlaneTime;
       break;
+    
+    case OPEN_LEFT_DOOR:   
+    case OPEN_RIGHT_DOOR:
+    case CLOSE_LEFT_DOOR:   
+    case CLOSE_RIGHT_DOOR:  
+    case HALF_LEFT_DOOR:   
+    case HALF_RIGHT_DOOR:
+      g_robotState.currLen ++;
+      break;
+      
  //   default:
  //     g_robotState.currLen++;
   }
@@ -102,6 +112,21 @@ void setPlaneOutput()
       break;
     case OPEN_LEFT_DOOR:
       openLeftDoor();
+      break;
+    case OPEN_RIGHT_DOOR:
+      openRightDoor();
+      break;
+    case CLOSE_LEFT_DOOR:
+      closeLeftDoor();
+      break;
+    case CLOSE_RIGHT_DOOR:
+      closeRightDoor();
+      break;
+    case HALF_LEFT_DOOR:
+      halfOpenLeftDoor();
+      break;
+    case HALF_RIGHT_DOOR:
+      halfOpenRightDoor();
       break;    
   }
 }

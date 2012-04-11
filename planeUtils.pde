@@ -22,15 +22,32 @@ void inline turnLeft(int len)
 void inline turnRight(int len)
 {
   addPlane(len, 0xFF, TURN_RIGHT);   
-}/*
-void inline openDoor()
-{
-  addPlane(OPEN_DOOR_TIME, 0xFF, OPEN_DOORS);
 }
-void inline closeDoor()
+void inline openLeft()
 {
-  addPlane(CLOSE_DOOR_TIME, 0xFF, CLOSE_DOORS);
-}*/
+  addPlane(1, 0xFF, OPEN_LEFT_DOOR);
+}
+void inline openRight()
+{
+  addPlane(1, 0xFF, OPEN_RIGHT_DOOR);
+}
+void inline closeLeft()
+{
+  addPlane(1, 0xFF, CLOSE_LEFT_DOOR);
+}
+void inline closeRight()
+{
+  addPlane(1, 0xFF, CLOSE_RIGHT_DOOR);
+}
+void inline halfLeft()
+{
+  addPlane(1, 0xFF, HALF_LEFT_DOOR);
+}
+void inline halfRight()
+{
+  addPlane(1, 0xFF, HALF_RIGHT_DOOR);
+}
+
 void inline goToPlane(uint8 n)
 {
   addPlane(COND_GO_TO, n, CONDITION);

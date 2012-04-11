@@ -32,6 +32,8 @@ void resetState()
     g_robotState.leftPWM = 0;
     g_robotState.rightPWM = 0;
     g_robotState.corrector = 0;
+    g_robotState.dontMoveTicks = 0;
+    g_robotState.minPwm = 3500;
     
     g_robotState.currPlane = 0;
     g_robotState.currLen = 0;
@@ -52,3 +54,25 @@ void resetState()
     }
 }
 
+void initRedButton()
+{
+   pinMode(RED_BUTTON_PIN, INPUT_PULLUP);
+   
+   attachInterrupt(RED_BUTTON_PIN, redButtonPressed, FALLING);
+}
+
+void redButtonPressed()
+{
+  shutDown(); 
+}
+
+void shutDown()
+{
+  noInterrupts();
+  
+  RESET_FLAG(ALLOW_WORK);
+  stopEngines();
+  
+  g_leftDoor.detach();
+  g_rightDoor.detach();
+}

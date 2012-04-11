@@ -1,6 +1,6 @@
 #include <Servo.h>
 
-#define DEGRESS(x) (53*(x))
+#define DEG(x) (389*(x))
 #define SM(x) (1013*(x))
 
 #define PLANE_COUNT 50
@@ -16,15 +16,20 @@
 #define LEFT_ENCODER_PIN_A 40
 #define LEFT_ENCODER_PIN_B 26
 
-#define LEFT_DOOR_PIN 6
-#define RIGHT_DOOR_PIN 28
+#define LEFT_DOOR_PIN 6         // T1 CH1
+#define RIGHT_DOOR_PIN 28        // T3 CH4
 
 #define LEFT_ENGINE_A 32
 #define LEFT_ENGINE_B 31
-#define LEFT_ENGINE_E 35
+#define LEFT_ENGINE_E 35        // T8 CH1
+
 #define RIGHT_ENGINE_A 33
 #define RIGHT_ENGINE_B 34
-#define RIGHT_ENGINE_E 36
+#define RIGHT_ENGINE_E 36      // T8 CH2
+
+#define RED_BUTTON_PIN 5
+
+#define MAX_MIN_PWM 7000
 
 typedef struct
 {
@@ -61,7 +66,10 @@ enum
   TURN_RIGHT,
   OPEN_LEFT_DOOR,
   OPEN_RIGHT_DOOR,
-  CLOSE_RIGHT,
+  CLOSE_RIGHT_DOOR,
+  CLOSE_LEFT_DOOR,
+  HALF_RIGHT_DOOR,
+  HALF_LEFT_DOOR,
   WAIT,
   CONDITION
 };
@@ -75,6 +83,8 @@ struct
   int leftPWM;
   int rightPWM;
   engineCorrector corrector;
+  int dontMoveTicks;
+  int minPwm;
   
   /*
   int currX;
@@ -94,9 +104,10 @@ struct
 } g_robotState;
 
 void setup() 
-{  
+{
+  pinMode(BOARD_LED_PIN, OUTPUT);
+  toggleLED();
   noInterrupts();
-
   resetState(); 
   /*
   moveForward(2000);
@@ -105,15 +116,34 @@ void setup()
   turnRight(2000);
   moveBackward(2000);
   */
-  moveForward(SM(40));
-  turnRight(35000);
+  /*
+  moveForward(SM(62));
+  turnLeft(DEG(100));
+  moveForward(SM(115));
+  turnRight(DEG(100));
+  moveForward(SM(65));
+  turnRight(DEG(100));
   wait(3000);
-//  moveForward(5000);
-//  turnLeft(900);
-//  turnRight(900);
-//  moveForward(3000);
+  */
+  /*
+  wait(1000);
+  openLeft();
+  wait(1000);
+  openRight();
+  wait(1000);
+  halfLeft();
+  halfRight();
+  wait(1000);
+  closeLeft();
+  wait(1000);
+  closeRight();
+  wait(1000);
+ */
+ 
+  setLeftStrategy();
+//  invertStrategy();
   
-//  initDoors();
+  initDoors();
   initEncoders();
 //  initRangers();
   initEngines();
@@ -122,6 +152,13 @@ void setup()
   
   SET_FLAG(ALLOW_WORK);
   SET_FLAG(ENGINE_STOPED);
+  
+  delay(500);
+  closeRightDoor();
+  delay(500);
+  closeLeftDoor();
+  delay(500);
+  toggleLED();
   
   interrupts();
 }
@@ -140,9 +177,7 @@ void loop()
   */
   if ((millis() - g_robotState.startTime) > MAX_WORK_TIME)
   {
-    RESET_FLAG(ALLOW_WORK);
-    stopEngines();
-    noInterrupts();
+    shutDown();
   }
    
   if(GET_FLAG(COLLISION)) 

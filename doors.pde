@@ -3,7 +3,7 @@ Servo g_leftDoor, g_rightDoor;
 void initDoors()
 {
   g_leftDoor.attach(LEFT_DOOR_PIN);
-  g_leftDoor.attach(RIGHT_DOOR_PIN);
+  g_rightDoor.attach(RIGHT_DOOR_PIN);
 }
 
 void inline closeLeftDoor()
@@ -27,7 +27,7 @@ void inline openRightDoor()
 {
   g_rightDoor.writeMicroseconds(2400);  
 }
-void inline halfORightDoor()
+void inline halfOpenRightDoor()
 {
   g_rightDoor.writeMicroseconds(1600);  
 }

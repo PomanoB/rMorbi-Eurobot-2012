@@ -8,13 +8,25 @@ void engineCorrectorNone()
   }
   else
   {
+    maxAllowPwm = g_robotState.planes[g_robotState.currPlane].type;
+    if ((maxAllowPwm == MOVE_FORWARD || 
+        maxAllowPwm == MOVE_FORWARD || 
+        maxAllowPwm == TURN_LEFT || 
+        maxAllowPwm == TURN_LEFT) &&
+        g_robotState.leftEncoder < 5 && 
+        g_robotState.rightEncoder < 5)
+    {
+       g_robotState.minPwm = changeToVal(g_robotState.minPwm, MAX_MIN_PWM, 50);  
+    }
+   //   g_robotState.minPwm += 50;
+      
     switch(g_robotState.planes[g_robotState.currPlane].type)
     {
       case MOVE_FORWARD:
       case MOVE_BACKWARD:
         if (g_robotState.planes[g_robotState.currPlane].len - g_robotState.currLen < 14000)
         {
-          maxAllowPwm = 3000;
+          maxAllowPwm = g_robotState.minPwm;
         }
         else
           maxAllowPwm = 65535;
@@ -44,7 +56,7 @@ void engineCorrectorNone()
       case TURN_LEFT:
         if (g_robotState.planes[g_robotState.currPlane].len - g_robotState.currLen < 14000)
         {
-          maxAllowPwm = 3000;
+          maxAllowPwm = g_robotState.minPwm;
         }
         else
           maxAllowPwm = 65535;
@@ -56,7 +68,7 @@ void engineCorrectorNone()
       case TURN_RIGHT:
         if (g_robotState.planes[g_robotState.currPlane].len - g_robotState.currLen < 14000)
         {
-          maxAllowPwm = 3000;
+          maxAllowPwm = g_robotState.minPwm;
         }
         else
           maxAllowPwm = 65535;        

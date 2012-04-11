@@ -18,7 +18,7 @@ bool isCollision()
   for(i = 0; i < RANGERS_COUNT; i++)
   {
   //  readedValue = analogRead(g_rangersPins[i]);
-      readedValue = getFiltredDistance(g_rangersPins[i]);
+    readedValue = getFiltredDistance(g_rangersPins[i]);
     if (readedValue >= g_rangersMaximums[i])
       return true;
   }
@@ -26,9 +26,9 @@ bool isCollision()
   return false; 
 }
 
-int getFiltredDistance(int pin)
+int getFiltredDistance(uint8 pin)
 {
-  int result[10];
+  uint16 result[10];
   int i;
 	
   for(i = 0; i < 10; i++)
@@ -36,14 +36,14 @@ int getFiltredDistance(int pin)
     result[i] = analogRead(pin);
   }
   
-  int iMax1, iMax2, nMax1, nMax2;
-  int iMin1, iMin2, nMin1, nMin2;
+  uint16 iMax1, iMax2, nMax1, nMax2;
+  uint16 iMin1, iMin2, nMin1, nMin2;
   iMin1 = 99999;
   iMin2 = 99999;
   iMax1 = 0;
   iMax2 = 0;
 
-  int currVal;
+  uint16 currVal;
   for(i = 0; i < 10; i++)
   {
     currVal = result[i];
