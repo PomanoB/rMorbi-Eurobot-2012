@@ -16,7 +16,7 @@ void engineCorrectorNone()
         g_robotState.leftEncoder < 5 && 
         g_robotState.rightEncoder < 5)
     {
-       g_robotState.minPwm = changeToVal(g_robotState.minPwm, MAX_MIN_PWM, 50);  
+       g_robotState.minPwm = changeToVal(g_robotState.minPwm, MAX_MIN_PWM, 100);  
     }
    //   g_robotState.minPwm += 50;
       

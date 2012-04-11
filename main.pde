@@ -27,9 +27,10 @@
 #define RIGHT_ENGINE_B 34
 #define RIGHT_ENGINE_E 36      // T8 CH2
 
-#define RED_BUTTON_PIN 5
+#define RED_BUTTON_PIN 30
 
-#define MAX_MIN_PWM 7000
+#define MAX_MIN_PWM 12000
+#define MIN_MIN_PWM 6500
 
 typedef struct
 {
@@ -140,13 +141,15 @@ void setup()
   wait(1000);
  */
  
-  setLeftStrategy();
+//  setLeftStrategy();
+  setRightStrategy();
 //  invertStrategy();
   
   initDoors();
   initEncoders();
 //  initRangers();
   initEngines();
+  initRedButton();
   
   initEngineTimer(40000); // 40000
   

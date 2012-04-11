@@ -103,11 +103,13 @@ void setPlaneOutput()
       rightEngineBackward();
       break;
     case TURN_LEFT:
-      leftEngineStop();
+   //   leftEngineStop();
+      leftEngineBackward();
       rightEngineForward();
       break;
     case TURN_RIGHT:
-      rightEngineStop();
+//      rightEngineStop();
+      rightEngineBackward();
       leftEngineForward();
       break;
     case OPEN_LEFT_DOOR:

@@ -2,28 +2,49 @@
 void setLeftStrategy()
 {
   moveForward(SM(56));
-  turnLeft(DEG(100));
+  turnLeft(DEG(101));
+//  moveBackward(SM(37));
   openRight();
-  moveForward(SM(60));
+  moveForward(SM(123)); // 123
+  
   closeRight();
-  moveForward(SM(63));
-  turnRight(DEG(95));
-  openRight();
+  turnRight(DEG(97));
   openLeft();
+  openRight();
   moveForward(SM(65));
-  turnRight(DEG(100));
+  closeRight();
+  turnRight(DEG(195));
+  
+  moveForward(SM(65));
   wait(3000); 
 }
 
 void setRightStrategy()
 {
+  moveForward(SM(56));
+  turnRight(DEG(110));
+  openLeft();
+  moveForward(SM(123)); // 123
   
+  closeLeft();
+  turnLeft(DEG(115));
+  openRight();
+  openLeft();
+  wait(500);
+  closeLeft();
+  wait(500);
+  moveForward(SM(10));
+  wait(500); 
+  turnLeft(DEG(195));
+  
+  moveForward(SM(65));
+  wait(500); 
 }
 
 void invertStrategy()
 {
   int i;
-  for(i = 0; i < g_robotState.lastAddedPlane; i++)
+  for(i = 0; i <= g_robotState.lastAddedPlane; i++)
   {
     switch(g_robotState.planes[i].type)
     {

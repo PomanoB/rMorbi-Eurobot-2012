@@ -1,59 +1,61 @@
-void inline addPlane(int l, uint8 s, uint8 t)
+int inline addPlane(int l, uint8 s, uint8 t)
 {
   g_robotState.lastAddedPlane++;
   
   g_robotState.planes[g_robotState.lastAddedPlane].len = l;
   g_robotState.planes[g_robotState.lastAddedPlane].speed = s;
   g_robotState.planes[g_robotState.lastAddedPlane].type = t;
+  
+  return g_robotState.lastAddedPlane;
 }
 
-void inline moveForward(int len)
+int inline moveForward(int len)
 {
-  addPlane(len, 0xFF, MOVE_FORWARD);
+  return addPlane(len, 0xFF, MOVE_FORWARD);
 }
-void inline moveBackward(int len)
+int inline moveBackward(int len)
 {
-  addPlane(len, 0xFF, MOVE_BACKWARD);
+  return addPlane(len, 0xFF, MOVE_BACKWARD);
 }
-void inline turnLeft(int len)
+int inline turnLeft(int len)
 {
-  addPlane(len, 0xFF, TURN_LEFT);   
+  return addPlane(len, 0xFF, TURN_LEFT);   
 }
-void inline turnRight(int len)
+int inline turnRight(int len)
 {
-  addPlane(len, 0xFF, TURN_RIGHT);   
+  return addPlane(len, 0xFF, TURN_RIGHT);   
 }
-void inline openLeft()
+int inline openLeft()
 {
-  addPlane(1, 0xFF, OPEN_LEFT_DOOR);
+  return addPlane(1, 0xFF, OPEN_LEFT_DOOR);
 }
-void inline openRight()
+int inline openRight()
 {
-  addPlane(1, 0xFF, OPEN_RIGHT_DOOR);
+  return addPlane(1, 0xFF, OPEN_RIGHT_DOOR);
 }
-void inline closeLeft()
+int inline closeLeft()
 {
-  addPlane(1, 0xFF, CLOSE_LEFT_DOOR);
+  return addPlane(1, 0xFF, CLOSE_LEFT_DOOR);
 }
-void inline closeRight()
+int inline closeRight()
 {
-  addPlane(1, 0xFF, CLOSE_RIGHT_DOOR);
+  return addPlane(1, 0xFF, CLOSE_RIGHT_DOOR);
 }
-void inline halfLeft()
+int inline halfLeft()
 {
-  addPlane(1, 0xFF, HALF_LEFT_DOOR);
+  return addPlane(1, 0xFF, HALF_LEFT_DOOR);
 }
-void inline halfRight()
+int inline halfRight()
 {
-  addPlane(1, 0xFF, HALF_RIGHT_DOOR);
-}
-
-void inline goToPlane(uint8 n)
-{
-  addPlane(COND_GO_TO, n, CONDITION);
+  return addPlane(1, 0xFF, HALF_RIGHT_DOOR);
 }
 
-void wait(int t)
+int inline goToPlane(uint8 n)
 {
-  addPlane(t, 0xFF, WAIT);
+  return addPlane(COND_GO_TO, n, CONDITION);
+}
+
+int wait(int t)
+{
+  return addPlane(t, 0xFF, WAIT);
 }

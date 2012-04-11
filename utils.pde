@@ -33,7 +33,7 @@ void resetState()
     g_robotState.rightPWM = 0;
     g_robotState.corrector = 0;
     g_robotState.dontMoveTicks = 0;
-    g_robotState.minPwm = 3500;
+    g_robotState.minPwm = MIN_MIN_PWM;
     
     g_robotState.currPlane = 0;
     g_robotState.currLen = 0;
@@ -58,12 +58,12 @@ void initRedButton()
 {
    pinMode(RED_BUTTON_PIN, INPUT_PULLUP);
    
-   attachInterrupt(RED_BUTTON_PIN, redButtonPressed, FALLING);
+   attachInterrupt(RED_BUTTON_PIN, redButtonPressed, CHANGE);
 }
 
 void redButtonPressed()
 {
-  shutDown(); 
+  shutDown();
 }
 
 void shutDown()
