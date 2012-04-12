@@ -21,8 +21,8 @@
 #define LEFT_ENCODER_PIN_A 40
 #define LEFT_ENCODER_PIN_B 26
 
-#define LEFT_DOOR_PIN 6         // T1 CH1
-#define RIGHT_DOOR_PIN 28        // T3 CH4
+#define LEFT_DOOR_PIN 28         // T1 CH1
+#define RIGHT_DOOR_PIN 6        // T3 CH4
 
 #define LEFT_ENGINE_A 32
 #define LEFT_ENGINE_B 31
@@ -160,7 +160,7 @@ void setup()
   initStartPins();
   initDoors();
   initEncoders();
-  initRangers();
+ // initRangers();
   initEngines();
   initRedButton();
   initBackButtons();
@@ -191,14 +191,14 @@ void loop()
 {
   if(!GET_FLAG(ALLOW_WORK))
     return;
- 
+ /*
   if (isCollision())
   {
     SET_FLAG(COLLISION);
   } 
   else
     RESET_FLAG(COLLISION);
-  
+  */
   if ((millis() - g_robotState.startTime) > MAX_WORK_TIME)
   {
     shutDown();

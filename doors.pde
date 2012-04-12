@@ -8,20 +8,20 @@ void initDoors()
 
 void inline closeLeftDoor()
 {
-  g_leftDoor.writeMicroseconds(2400);
+  g_leftDoor.writeMicroseconds(2100);
 }
 void inline openLeftDoor()
 {
-  g_leftDoor.writeMicroseconds(900);  
+  g_leftDoor.writeMicroseconds(500);  
 }
 
 void inline halfOpenLeftDoor()
 {
-  g_leftDoor.writeMicroseconds(1400);  
+  g_leftDoor.writeMicroseconds(1300);  
 }
 void inline closeRightDoor()
 {
-  g_rightDoor.writeMicroseconds(700);
+  g_rightDoor.writeMicroseconds(560);
 }
 void inline openRightDoor()
 {
@@ -29,5 +29,5 @@ void inline openRightDoor()
 }
 void inline halfOpenRightDoor()
 {
-  g_rightDoor.writeMicroseconds(1600);  
+  g_rightDoor.writeMicroseconds(1500);  
 }

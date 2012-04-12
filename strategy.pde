@@ -1,6 +1,10 @@
 
 void setLeftStrategy()
 {
+  
+//  backCollide();
+  
+  return;
   moveForward(SM(56));
   turnLeft(DEG(101));
 //  moveBackward(SM(37));
@@ -21,16 +25,13 @@ void setLeftStrategy()
 
 void setRightStrategy()
 {
-  moveBackward(SM(100));
-  goToPlane(0);
-  return;
   /*
   moveForward(SM(30));
   backCollide();
   moveForward(SM(30));
   return;
   */
-  moveForward(SM(84));
+  moveForward(SM(75));
   turnRight(DEG(51));
 //  backCollide();
   openLeft();
