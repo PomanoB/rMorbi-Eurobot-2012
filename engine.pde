@@ -40,9 +40,9 @@ void engineCorrectorNone()
         {
         //  g_robotState.leftPWM = decToMin(g_robotState.leftPWM, 0, 10000);
           if (g_robotState.rightEncoder == maxAllowPwm)
-            g_robotState.leftPWM = decToMin(g_robotState.leftPWM, 0, 8000);
+            g_robotState.leftPWM = decToMin(g_robotState.leftPWM, 0, 1000);
           else
-            g_robotState.rightPWM = changeToVal(g_robotState.rightPWM, maxAllowPwm, 8000);
+            g_robotState.rightPWM = changeToVal(g_robotState.rightPWM, maxAllowPwm, 1000);
         }
         else
         if (g_robotState.rightPWM > g_robotState.leftEncoder)
@@ -54,6 +54,22 @@ void engineCorrectorNone()
         }
         
         break;
+        
+      case BACK_COLLISION:
+        if (g_robotState.rightBackPressed)
+        {
+          g_robotState.rightPWM = 0;
+        }
+        else
+          g_robotState.rightPWM = 15000;
+        
+        if (g_robotState.leftBackPressed)
+        {
+          g_robotState.leftPWM = 0;
+        }
+        else
+          g_robotState.leftPWM = 15000;  
+        break;  
     /*
       case TURN_LEFT:
         if (g_robotState.planes[g_robotState.currPlane].len - g_robotState.currLen < 14000)

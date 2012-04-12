@@ -21,20 +21,47 @@ void setLeftStrategy()
 
 void setRightStrategy()
 {
-  moveForward(SM(76));
-  turnRight(DEG(54));
+  moveBackward(SM(100));
+  goToPlane(0);
+  return;
+  /*
+  moveForward(SM(30));
+  backCollide();
+  moveForward(SM(30));
+  return;
+  */
+  moveForward(SM(84));
+  turnRight(DEG(51));
+//  backCollide();
   openLeft();
-  moveForward(SM(143)); // 123
+  moveForward(SM(127)); // 123
   
-  closeLeft();
-  turnLeft(DEG(48));
+  openLeft();
+  turnLeft(DEG(47));
   openRight();
   openLeft();
   moveForward(SM(83));
+  
+  closeRight();
+  closeLeft();
   turnLeft(DEG(54));
-  
   moveBackward(SM(10));
+  openRight();
+  openLeft();
   
+  moveForward(SM(30));
+  
+  closeLeft();
+  closeRight();
+  turnLeft(DEG(47));
+  
+  moveForward(SM(75));
+  turnRight(DEG(47));
+  moveForward(SM(90));
+  turnLeft(DEG(47));
+  moveForward(SM(30));
+  openRight();
+  openLeft();
   wait(1000); 
 }
 

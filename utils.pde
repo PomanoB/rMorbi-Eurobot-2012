@@ -41,6 +41,9 @@ void resetState()
     g_robotState.startPlaneTime = 0;    
     
     g_robotState.startTime = 0;
+     
+    g_robotState.rightBackPressed = 0;
+    g_robotState.leftBackPressed = 0;
     
     RESET_FLAG(ALLOW_WORK);
     RESET_FLAG(COLLISION);
@@ -59,6 +62,35 @@ void initRedButton()
    pinMode(RED_BUTTON_PIN, INPUT_PULLUP);
    
    attachInterrupt(RED_BUTTON_PIN, redButtonPressed, CHANGE);
+}
+
+void initBackButtons()
+{
+  pinMode(BACK_BUTTON_LEFT, INPUT_PULLUP);
+  attachInterrupt(BACK_BUTTON_LEFT, backButtonLeftPressed, FALLING);
+
+  pinMode(BACK_BUTTON_RIGHT, INPUT_PULLUP);
+  attachInterrupt(BACK_BUTTON_RIGHT, backButtonRightPressed, FALLING);
+}
+
+void backButtonRightPressed()
+{
+  g_robotState.rightBackPressed = 1;
+}
+void backButtonLeftPressed()
+{
+  g_robotState.leftBackPressed = 1;
+}
+void initStartPins()
+{
+  pinMode(START_PIN, INPUT_PULLUP);
+  
+//  attachInterrupt(START_PIN, startPinStarted, CHANGE);
+}
+
+void startPinStarted()
+{
+  SET_FLAG(ALLOW_WORK); 
 }
 
 void redButtonPressed()

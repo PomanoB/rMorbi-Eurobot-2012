@@ -25,7 +25,7 @@ void inline closeRightDoor()
 }
 void inline openRightDoor()
 {
-  g_rightDoor.writeMicroseconds(2400);  
+  g_rightDoor.writeMicroseconds(2000);  //2400
 }
 void inline halfOpenRightDoor()
 {

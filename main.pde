@@ -9,6 +9,11 @@
 #define OPEN_DOOR_TIME 1000
 #define CLOSE_DOOR_TIME 1000
 
+#define START_PIN 18
+
+#define BACK_BUTTON_LEFT 2
+#define BACK_BUTTON_RIGHT 3
+
 //#define LEFT_ENCODER_PIN 1
 //#define RIGHT_ENCODER_PIN 2
 #define RIGHT_ENCODER_PIN_A 39
@@ -90,6 +95,8 @@ struct
   int dontMoveTicks;
   int minPwm;
   
+  uint16 leftBackPressed; 
+  uint16 rightBackPressed;
   /*
   int currX;
   int currY;
@@ -113,6 +120,8 @@ void setup()
   toggleLED();
   noInterrupts();
   resetState(); 
+  
+  
   /*
   moveForward(2000);
   turnLeft(2000);
@@ -148,16 +157,13 @@ void setup()
   setRightStrategy();
 //  invertStrategy();
   
+  initStartPins();
   initDoors();
   initEncoders();
-//  initRangers();
+  initRangers();
   initEngines();
   initRedButton();
-  
-  initEngineTimer(40000); // 40000
-  
-  SET_FLAG(ALLOW_WORK);
-  SET_FLAG(ENGINE_STOPED);
+  initBackButtons();
   
   delay(500);
   closeRightDoor();
@@ -166,6 +172,18 @@ void setup()
   delay(500);
   toggleLED();
   
+  while(digitalRead(START_PIN) == LOW)
+  {
+    continue; 
+  }
+  toggleLED();
+  
+  
+  initEngineTimer(40000); // 40000
+  
+  SET_FLAG(ALLOW_WORK);
+  SET_FLAG(ENGINE_STOPED);
+  
   interrupts();
 }
 
@@ -173,14 +191,14 @@ void loop()
 {
   if(!GET_FLAG(ALLOW_WORK))
     return;
-  /*
+ 
   if (isCollision())
   {
     SET_FLAG(COLLISION);
   } 
   else
     RESET_FLAG(COLLISION);
-  */
+  
   if ((millis() - g_robotState.startTime) > MAX_WORK_TIME)
   {
     shutDown();
@@ -193,5 +211,6 @@ void loop()
     return;
   }
   RESET_FLAG(ENGINE_STOPED);
-
+ // delay(100);
+ // delay(500);
 }

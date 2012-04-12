@@ -1,6 +1,6 @@
-#define RANGERS_COUNT 4
-uint8 g_rangersPins[RANGERS_COUNT] = {5, 6, 7, 8};
-uint16 g_rangersMaximums[RANGERS_COUNT] = {50, 56, 70, 73};
+#define RANGERS_COUNT 6
+uint8 g_rangersPins[RANGERS_COUNT] = {27, 20, 19, 11, 12, 10};
+//uint16 g_rangersMaximums[RANGERS_COUNT] = {50, 56, 70, 73};
 
 void initRangers()
 {
@@ -11,19 +11,71 @@ void initRangers()
   }
 }
 
+bool isFrontCollision()
+{
+  if (
+    (getFiltredDistance(19) > 2300 /* && getFiltredDistance(19) > 2300 && getFiltredDistance(19) > 2300 */) ||
+    (getFiltredDistance(11) > 2000 /* && getFiltredDistance(11) > 2000 && getFiltredDistance(11) > 2000 */)
+    )
+  {
+    return true; 
+  }
+  return false;
+  
+  
+}
+bool isBackCollision()
+{
+  if (
+    (getFiltredDistance(27) > 2600 /* && getFiltredDistance(27) > 2600 && getFiltredDistance(27) > 2600 */) ||
+    (getFiltredDistance(20) > 2600 /* && getFiltredDistance(20) > 2600 && getFiltredDistance(20) > 2600 */)
+    )
+  {
+    return true; 
+  }
+  return false;
+}
+
+bool isRightCollision()
+{
+  if (
+    (getFiltredDistance(12) > 1000 /* && getFiltredDistance(12) > 1000 && getFiltredDistance(12) > 1000 */)
+    )
+  {
+    return true; 
+  }
+  return false;
+}
+
+bool isLeftCollision()
+{
+//  SerialUSB.println("Check left");
+  if (
+    (getFiltredDistance(10) > 1000 /* && getFiltredDistance(10) > 1000 && getFiltredDistance(10) > 1000 */)
+    )
+  {
+    return true; 
+  }
+  return false;
+}
+
 bool isCollision()
 {
-  int i;
-  uint16 readedValue;
-  for(i = 0; i < RANGERS_COUNT; i++)
+  switch(g_robotState.planes[g_robotState.currPlane].type)
   {
-  //  readedValue = analogRead(g_rangersPins[i]);
-    readedValue = getFiltredDistance(g_rangersPins[i]);
-    if (readedValue >= g_rangersMaximums[i])
-      return true;
+    case MOVE_FORWARD:
+       return isFrontCollision();
+    case MOVE_BACKWARD:
+       return isBackCollision();
+    
+    case TURN_LEFT:
+       return isLeftCollision();
+    case TURN_RIGHT:
+       return false;
+       return isRightCollision();
+    default:
+      return false;
   }
- 
-  return false; 
 }
 
 int getFiltredDistance(uint8 pin)
@@ -33,7 +85,8 @@ int getFiltredDistance(uint8 pin)
 	
   for(i = 0; i < 10; i++)
   {
-    result[i] = analogRead(pin);
+    result[i] = (analogRead(pin));
+    delay(20);
   }
   
   uint16 iMax1, iMax2, nMax1, nMax2;

@@ -59,3 +59,8 @@ int wait(int t)
 {
   return addPlane(t, 0xFF, WAIT);
 }
+
+int inline backCollide()
+{
+  return addPlane(1, 0xFF, BACK_COLLISION); 
+}

@@ -51,6 +51,10 @@ bool checkComplete()
 
 void updatePlane()
 {
+  if (g_robotState.planes[g_robotState.currPlane].type != BACK_COLLISION)
+  {
+    g_robotState.leftBackPressed = g_robotState.rightBackPressed = 0;
+  }
   switch(g_robotState.planes[g_robotState.currPlane].type)
   {
     case MOVE_FORWARD:
@@ -79,9 +83,16 @@ void updatePlane()
     case CLOSE_RIGHT_DOOR:  
     case HALF_LEFT_DOOR:   
     case HALF_RIGHT_DOOR:
+    case CONDITION:
       g_robotState.currLen ++;
       break;
-      
+    case BACK_COLLISION:
+      if (g_robotState.rightBackPressed && g_robotState.leftBackPressed)
+      {
+        g_robotState.rightBackPressed = g_robotState.leftBackPressed = 0;
+        g_robotState.currLen ++;
+      }
+      break;   
  //   default:
  //     g_robotState.currLen++;
   }
@@ -100,6 +111,7 @@ void setPlaneOutput()
       rightEngineForward();
       break; 
     case MOVE_BACKWARD:
+    case BACK_COLLISION:
       leftEngineBackward();
       rightEngineBackward();
       break;
