@@ -21,24 +21,21 @@ void setLeftStrategy()
 
 void setRightStrategy()
 {
-  moveForward(SM(56));
-  turnRight(DEG(110));
+  moveForward(SM(76));
+  turnRight(DEG(54));
   openLeft();
-  moveForward(SM(123)); // 123
+  moveForward(SM(143)); // 123
   
   closeLeft();
-  turnLeft(DEG(115));
+  turnLeft(DEG(48));
   openRight();
   openLeft();
-  wait(500);
-  closeLeft();
-  wait(500);
-  moveForward(SM(10));
-  wait(500); 
-  turnLeft(DEG(195));
+  moveForward(SM(83));
+  turnLeft(DEG(54));
   
-  moveForward(SM(65));
-  wait(500); 
+  moveBackward(SM(10));
+  
+  wait(1000); 
 }
 
 void invertStrategy()

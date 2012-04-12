@@ -32,6 +32,7 @@ void inline setCurPlane()
  //   SerialUSB.println("END!!!!");
   }
   toggleLED();
+  g_robotState.leftEncoder = g_robotState.rightEncoder = 0;
 }
 
 bool checkComplete()
