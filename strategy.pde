@@ -26,12 +26,12 @@ void setLeftStrategy()
 void setRightStrategy()
 {
   moveForward(SM(62));
-  turnLeft(DEG(49));
+  turnLeft(DEG(52));      //49
   moveBackward(SM(150));
   backCollide();
   moveForward(SM(110));
-  turnRight(DEG(49));
-  moveBackward(SM(20));
+  turnRight(DEG(52));
+  moveBackward(SM(30));
   return;
   
   /*
