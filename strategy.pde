@@ -25,6 +25,15 @@ void setLeftStrategy()
 
 void setRightStrategy()
 {
+  moveForward(SM(62));
+  turnLeft(DEG(49));
+  moveBackward(SM(150));
+  backCollide();
+  moveForward(SM(110));
+  turnRight(DEG(49));
+  moveBackward(SM(20));
+  return;
+  
   /*
   moveForward(SM(30));
   backCollide();

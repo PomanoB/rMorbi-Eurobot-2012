@@ -160,7 +160,7 @@ void setup()
   initStartPins();
   initDoors();
   initEncoders();
- // initRangers();
+  initRangers();
   initEngines();
   initRedButton();
   initBackButtons();
@@ -177,7 +177,7 @@ void setup()
     continue; 
   }
   toggleLED();
-  
+  g_robotState.startTime = millis();
   
   initEngineTimer(40000); // 40000
   
@@ -191,14 +191,14 @@ void loop()
 {
   if(!GET_FLAG(ALLOW_WORK))
     return;
- /*
+
   if (isCollision())
   {
     SET_FLAG(COLLISION);
   } 
   else
     RESET_FLAG(COLLISION);
-  */
+  
   if ((millis() - g_robotState.startTime) > MAX_WORK_TIME)
   {
     shutDown();
