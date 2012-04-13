@@ -39,7 +39,7 @@ bool isBackCollision()
 bool isRightCollision()
 {
   if (
-    (getFiltredDistance(12) > 1000 /* && getFiltredDistance(12) > 1000 && getFiltredDistance(12) > 1000 */)
+    (getFiltredDistance(12) > 1550 /* && getFiltredDistance(12) > 1000 && getFiltredDistance(12) > 1000 */)
     )
   {
     return true; 

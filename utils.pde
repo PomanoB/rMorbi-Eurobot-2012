@@ -88,6 +88,11 @@ void initStartPins()
 //  attachInterrupt(START_PIN, startPinStarted, CHANGE);
 }
 
+void initDirectionPin()
+{
+  pinMode(DIRECTIN_PIN, INPUT_PULLUP);
+}
+
 void startPinStarted()
 {
   SET_FLAG(ALLOW_WORK); 

@@ -37,6 +37,8 @@
 #define MAX_MIN_PWM 12000
 #define MIN_MIN_PWM 6500
 
+#define DIRECTIN_PIN 4
+
 typedef struct
 {
   int len; // condition
@@ -153,10 +155,6 @@ void setup()
   wait(1000);
  */
  
-//  setLeftStrategy();
-  setRightStrategy();
-//  invertStrategy();
-  
   initStartPins();
   initDoors();
   initEncoders();
@@ -164,6 +162,13 @@ void setup()
   initEngines();
   initRedButton();
   initBackButtons();
+  initDirectionPin();
+  
+//  setLeftStrategy();
+  setRightStrategy();
+    
+  if(digitalRead(DIRECTIN_PIN) == LOW)
+    invertStrategy();  
   
   delay(500);
   closeRightDoor();
