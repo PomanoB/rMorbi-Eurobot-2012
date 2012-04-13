@@ -36,14 +36,34 @@ void setRightStrategy()
   return;
   */
   
-  moveForward(SM(75));
+  moveForward(SM(79));
   turnRight(DEG(51));
-//  backCollide();
-  halfLeft();
-  moveForward(SM(143)); // 123
   
-  turnLeft(DEG(50));
+  backCollide();
+  
+  halfLeft();
+  moveForward(SM(164)); // 123
+  
+  turnLeft(DEG(50)); // ---------------------------- choose?
+  
+  /*
+  closeLeft();
+  moveForward(SM(30));
+  
+  turnLeft(DEG(54));
+  
   openRight();
+  openLeft();
+  
+  moveForward(SM(29));
+    
+  closeRight();
+  closeLeft();
+  */
+
+
+ // turn left
+  halfRight();
   openLeft();
   
   moveForward(SM(85));
@@ -54,41 +74,36 @@ void setRightStrategy()
   
   turnLeft(DEG(54));
   backCollide();
-  
-  
-  moveForward(SM(56));
-  turnLeft(DEG(56));
-  moveBackward(SM(7));
-  openRight();
-  openLeft();
-  
-  moveForward(SM(50));
   halfRight();
-  moveForward(SM(73));
-  turnRight(DEG(53));
+  halfLeft();
   
+  moveForward(SM(55));
+  turnLeft(DEG(53));
+  moveBackward(SM(7));
+//  halfRight();
+  openLeft();
   
+  moveForward(SM(132)); //50 
+//  halfRight();
 //  closeLeft();
-//  closeRight();
-  /*
-  moveBackward(SM(10));
-  openRight();
-  openLeft();
-  
-  moveForward(SM(30));
-  
-  closeLeft();
+//  moveForward(SM(82));
+  turnRight(DEG(53));
   closeRight();
-  turnLeft(DEG(47));
+  closeLeft();
+  backCollide();
   
-  moveForward(SM(75));
-  turnRight(DEG(47));
-  moveForward(SM(90));
-  turnLeft(DEG(47));
-  moveForward(SM(30));
-  openRight();
+ // openRight();
+//  openLeft();
+  
+  
+  moveForward(SM(100));
+  turnLeft(DEG(56));
+  moveForward(SM(40));
   openLeft();
-  */
+  openRight();
+  
+  moveBackward(SM(40));
+  
   wait(1000); 
 }
 

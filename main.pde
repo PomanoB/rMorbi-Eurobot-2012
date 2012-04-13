@@ -34,7 +34,7 @@
 
 #define RED_BUTTON_PIN 30
 
-#define MAX_MIN_PWM 12000
+#define MAX_MIN_PWM 30000
 #define MIN_MIN_PWM 6500
 
 #define DIRECTIN_PIN 4
